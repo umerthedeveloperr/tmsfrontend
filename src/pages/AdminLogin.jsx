@@ -8,7 +8,7 @@ export default function AdminLogin() {
   const nav = useNavigate();
   async function login(e) {
     e.preventDefault();
-    const res = await axios.post("http://localhost:5000/api/admin/login", {
+    const res = await axios.post("https://tmsbackend-k1jkiw30v-umerthedeveloperrs-projects.vercel.app/api/admin/login", {
       email,
       password,
     });
