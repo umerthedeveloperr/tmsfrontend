@@ -6,7 +6,7 @@ export default function Home() {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get("https://tmsbackend-k1jkiw30v-umerthedeveloperrs-projects.vercel.app/api/events")
+      .get("emttms.up.railway.app/api/events")
       .then((r) => setEvents(r.data));
   }, []);
   return (
