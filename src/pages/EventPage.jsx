@@ -11,7 +11,7 @@ export default function EventPage() {
   const [file, setFile] = useState(null);
   const [msg, setMsg] = useState("");
   useEffect(() => {
-    axios.get("https://emttms.up.railway.app//api/events").then((r) => {
+    axios.get("https://emttms.up.railway.app/api/events").then((r) => {
       const ev = r.data.find((x) => x._id === id);
       setEvent(ev);
     });
@@ -25,7 +25,7 @@ export default function EventPage() {
     form.append("eventId", id);
     form.append("screenshot", file);
     try {
-      const res = await axios.post("https://emttms.up.railway.app//api/bookings", form, {
+      const res = await axios.post("https://emttms.up.railway.app/api/bookings", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setMsg(

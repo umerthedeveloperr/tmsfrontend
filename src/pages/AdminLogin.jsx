@@ -8,7 +8,7 @@ export default function AdminLogin() {
   const nav = useNavigate();
   async function login(e) {
     e.preventDefault();
-    const res = await axios.post("https://emttms.up.railway.app//api/admin/login", {
+    const res = await axios.post("https://emttms.up.railway.app/api/admin/login", {
       email,
       password,
     });

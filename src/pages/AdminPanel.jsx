@@ -14,7 +14,7 @@ export default function AdminPanel() {
   async function fetchList() {
     const token = localStorage.getItem("adminToken");
     if (!token) return nav("/admin");
-    const res = await axios.get("https://emttms.up.railway.app//api/admin/bookings", {
+    const res = await axios.get("https://emttms.up.railway.app/api/admin/bookings", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -37,7 +37,7 @@ export default function AdminPanel() {
   async function confirm(id) {
     const token = localStorage.getItem("adminToken");
     const res = await axios.put(
-      `https://emttms.up.railway.app//api/admin/bookings/${id}/confirm`,
+      `https://emttms.up.railway.app/api/admin/bookings/${id}/confirm`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );

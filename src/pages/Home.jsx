@@ -6,7 +6,7 @@ export default function Home() {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get("https://emttms.up.railway.app//api/events")
+      .get("https://emttms.up.railway.app/api/events")
       .then((r) => setEvents(r.data));
   }, []);
   return (
