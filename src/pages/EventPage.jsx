@@ -1,8 +1,7 @@
-// Booking form
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-11;
+
 export default function EventPage() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
@@ -10,12 +9,14 @@ export default function EventPage() {
   const [email, setEmail] = useState("");
   const [file, setFile] = useState(null);
   const [msg, setMsg] = useState("");
+
   useEffect(() => {
     axios.get("https://emttms.up.railway.app/api/events").then((r) => {
       const ev = r.data.find((x) => x._id === id);
       setEvent(ev);
     });
   }, [id]);
+
   async function submit(e) {
     e.preventDefault();
     if (!file) return setMsg("Upload screenshot");
@@ -25,7 +26,7 @@ export default function EventPage() {
     form.append("eventId", id);
     form.append("screenshot", file);
     try {
-      const res = await axios.post("https://emttms.up.railway.app/api/bookings", form, {
+      await axios.post("https://emttms.up.railway.app/api/bookings", form, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setMsg(
@@ -34,42 +35,52 @@ export default function EventPage() {
       setName("");
       setEmail("");
       setFile(null);
-    } catch (err) {
+    } catch {
       setMsg("Error creating booking");
     }
   }
-  if (!event) return <div>Loading...</div>;
+
+  if (!event) return <div id="loading-msg">Loading...</div>;
+
   return (
-    <div className="container">
-      <h2>{event.title}</h2>
-      <p>{event.description}</p>
-      <p>Date: {new Date(event.date).toLocaleString()}</p>
-      <p>Price: PKR {event.price}</p>
-      <form onSubmit={submit} className="form">
+    <div id="booking-container">
+      <h2 id="event-title">{event.title}</h2>
+      <p id="event-description">{event.description}</p>
+      <p id="event-date">Date: {new Date(event.date).toLocaleString()}</p>
+      <p id="event-price">Price: PKR {event.price}</p>
+
+      <form id="booking-form" onSubmit={submit}>
         <input
+          id="name-input"
           placeholder="Your name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
         <input
+          id="email-input"
           placeholder="Your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <div>
-          <label>Upload payment screenshot (JazzCash/Easypaisa)</label>
+        <div id="file-upload">
+          <label htmlFor="screenshot">
+            Upload payment screenshot (JazzCash/Easypaisa)
+          </label>
           <input
             type="file"
+            id="screenshot"
             accept="image/*"
             onChange={(e) => setFile(e.target.files[0])}
           />
         </div>
-        12
-        <button type="submit">Submit booking</button>
+        <button type="submit" id="submit-btn">
+          Submit booking
+        </button>
       </form>
-      {msg && <p>{msg}</p>}
+
+      {msg && <p id="form-msg">{msg}</p>}
     </div>
   );
 }
