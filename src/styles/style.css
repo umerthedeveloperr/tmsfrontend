@@ -40,7 +40,7 @@
 /* Image section (carousel-style placeholder) */
 #event-image {
   height: 220px;
-  background-image: url("C:\\Umer\\Frontend TMS Github cloned\\tmsfrontend\\src\\static\\placeholder.jpg") ;
+  background-image: url("src\static\placeholder.jpg") ;
   background-position: center;
   background-size: cover;
   display: flex;
