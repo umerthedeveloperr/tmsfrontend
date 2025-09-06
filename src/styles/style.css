@@ -40,7 +40,7 @@
 /* Image section (carousel-style placeholder) */
 #event-image {
   height: 220px;
-  background-image: url("src\\static\\placeholder.jpg") ;
+  background-image: url("/placeholder.jpg") ;
   background-position: center;
   background-size: cover;
   display: flex;
